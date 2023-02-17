@@ -1,0 +1,96 @@
+{
+  "name": ""$SITE"",
+  "version": "1.0.0",
+  "description": "webpack build setup for SCSS and JS",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "start:nodemon": "nodemon --exec babel-node src/index.js",
+    "start:webdev": "npm run remove:assets; webpack --watch --config webpack.dev.js --mode development",
+    "start:webdev": "npm run remove:assets; webpack --watch --config webpack.dev.js --mode development",
+    "start:webprod": "npm run remove:assets; webpack --watch --config webpack.prod.js --mode production",
+    "build:webprod": "npm run remove:assets; webpack --config webpack.prod.js --mode production",
+    "test": "jest --config ./jest.config.json",
+    "test:watch": "npm run test -- --watch",
+    "lint": "sass-lint -v -q",
+    "lint:fix": "sass-lint-auto-fix -c .sass-lint-auto-fix.yml",
+    "remove:assets": "rm -rf web/wp-content/plugins/"$PLUGIN_NAME"/public/css/*; rm -rf web/wp-content/plugins/"$PLUGIN_NAME"/public/js/*; ",
+    "rebuild:npmbuild": "rm package-lock.json; rm -rf node_modules; npm i",
+    "wp-env-start": "wp-env start; npm run wp-env-activetheme; npm run wp-env-update",
+    "wp-env-stop": "wp-env stop",
+    "wp-env-update": "wp-env update",
+    "wp-env-destroy": "wp-env destroy",
+    "wp-env-activetheme": "wp-env run tests-cli \"wp theme activate astra-child\"",
+    "test-e2e:debug": "wp-scripts test-e2e --puppeteer-interactive --webpack-src-dir=test/gutenberg/spec --config ./e2e.jest.config.js",
+    "test-e2e:watch": "npm run test-e2e --webpack-src-dir=test/gutenberg/spec --config ./e2e.jest.config.js -- --watch",
+    "test-e2e": "wp-scripts test-e2e --webpack-src-dir=test/gutenberg/spec --config ./e2e.jest.config.js "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HelloWorldDevs/"$SITE".git"
+  },
+  "keywords": [
+    "javascript",
+    "php",
+    "wordpress"
+  ],
+  "author": "jeff@helloworlddevs.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HelloWorldDevs/"$SITE"/issues"
+  },
+  "homepage": "https://github.com/HelloWorldDevs/"$SITE"#readme",
+  "engines": {
+    "node": ">=16.15.1",
+    "npm": ">=8.11.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/eslint-parser": "^7.18.9",
+    "@babel/node": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@wordpress/e2e-test-utils": "^8.0.0",
+    "@wordpress/e2e-tests": "^5.0.0",
+    "@wordpress/scripts": "^24.0.0",
+    "autoprefixer": "^10.4.8",
+    "babel-loader": "^8.2.5",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^4.0.0",
+    "cssnano": "^5.1.12",
+    "dotenv-webpack": "^8.0.0",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-webpack-plugin": "^3.2.0",
+    "extract-loader": "^5.1.0",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.19",
+    "npm-check": "^6.0.1",
+    "postcss-loader": "^7.0.1",
+    "postcss-preset-env": "^7.7.2",
+    "resolve-url-loader": "^5.0.0",
+    "sass-loader": "^13.0.2",
+    "style-loader": "^3.3.1",
+    "terser-webpack-plugin": "^5.3.3",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3",
+    "webpack-merge": "^5.8.0",
+    "webpack-shell-plugin-next": "^2.2.2"
+  },
+  "dependencies": {
+    "@wordpress/env": "^5.2.0",
+    "dotenv": "^16.0.1"
+  },
+  "overrides": {
+    "jest": "27.*"
+  }
+}
